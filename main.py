@@ -7,6 +7,8 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QSpinBox, QComboBox, QTextEdit, QGroupBox, QMessageBox)
 from PySide6.QtCore import QTimer
 
+CREATE_NO_WINDOW = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+
 def get_bin_path(filename):
     if getattr(sys, 'frozen', False):
         base_dir = sys._MEIPASS
@@ -21,7 +23,13 @@ class AdbManager:
     def get_devices_info(self):
         cmd = [self.adb_path, "devices", "-l"]
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+            result = subprocess.run(
+                cmd, 
+                capture_output=True, 
+                text=True, 
+                timeout=5,
+                creationflags=CREATE_NO_WINDOW
+            )
         except Exception:
             return []
 
@@ -54,18 +62,33 @@ class AdbManager:
 
     def restart_in_usb_mode(self, serial):
         cmd = [self.adb_path, "-s", serial, "usb"]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(
+            cmd, 
+            capture_output=True, 
+            text=True,
+            creationflags=CREATE_NO_WINDOW
+        )
         return result.returncode == 0, result.stdout + result.stderr
 
     def pair_device(self, ip_port, code):
         cmd = [self.adb_path, "pair", ip_port, str(code)]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(
+            cmd, 
+            capture_output=True, 
+            text=True,
+            creationflags=CREATE_NO_WINDOW
+        )
         success = "Successfully paired" in result.stdout or result.returncode == 0
         return success, result.stdout + result.stderr
 
     def connect_device(self, ip_port):
         cmd = [self.adb_path, "connect", ip_port]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(
+            cmd, 
+            capture_output=True, 
+            text=True,
+            creationflags=CREATE_NO_WINDOW
+        )
         success = "connected to" in result.stdout.lower()
         return success, result.stdout + result.stderr
 
@@ -88,7 +111,10 @@ class DexController:
         ]
         if serial:
             cmd.extend(["-s", serial])
-        self.process = subprocess.Popen(cmd)
+        self.process = subprocess.Popen(
+            cmd,
+            creationflags=CREATE_NO_WINDOW
+        )
         return self.process
 
     def stop_dex(self):
@@ -99,7 +125,7 @@ class DexController:
 class DexApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Galaxy DeX & ADB Controller")
+        self.setWindowTitle("Galaxy A Dex")
         self.setGeometry(100, 100, 520, 660)
         
         adb_path = get_bin_path("adb.exe")
@@ -217,8 +243,9 @@ class DexApp(QMainWindow):
             "MIT License\n\n"
             "【サードパーティ製オープンソースライセンス】\n"
             "・scrcpy (Apache License 2.0)\n"
-            "     Copyright (C) 2018 Genymobile\n"
-            "     Copyright (C) 2018-2026 Romain Vimont\n"
+            "   Copyright (C) 2018 Genymobile\n"
+            "   Copyright (C) 2018-2026 Romain Vimont\n"
+
             "  https://github.com/Genymobile/scrcpy\n\n"
             "・Android Debug Bridge (ADB) (Apache License 2.0)\n"
             "  Copyright (C) The Android Open Source Project\n\n"
