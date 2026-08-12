@@ -9,15 +9,19 @@
 Galaxy A Dex は、本来 Samsung DeX に非対応な Galaxy Aシリーズ（A20/A30/A25 等）で、PC上に仮想DeX画面を表示・操作するためのGUIアプリケーションです。
 
 * **多言語自動切替:** OSの言語設定に合わせて自動で「日本語 / English」が切り替わります（UI上のドロップダウンメニューから手動切り替えも可能）。
-* **クロスプラットフォーム対応:** リリリース版は Windows 向け（単一exe）ですが、Pythonソースコードから実行することで macOS や Linux でも利用可能です。
+* **クロスプラットフォーム対応:** リリース版は Windows 向け（単一exe）ですが、Pythonソースコードから実行することで macOS や Linux でも利用可能です。
 
 ---
 
 ### 📖 使い方
 
 #### 事前準備
-1. 端末の「設定」>「端末情報」>「ソフトウェア情報」から「ビルド番号」を7回タップして**開発者モード**を有効化します。
-2. 開発者向けオプションから **USBデバッグ**（または **ワイヤレスデバッグ**）を有効にしてください。
+1. **PC側の準備（必須）:**
+   起動時にエラーが発生する場合、Microsoft公式の **Visual C++ 再頒布可能パッケージ (x64)** が未インストールの可能性があります。あらかじめ以下のリンクからインストールしてください。
+   * 🔗 [Visual C++ 再頒布可能パッケージ (x64) をダウンロード](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+2. **スマホ側の準備:**
+   端末の「設定」>「端末情報」>「ソフトウェア情報」から「ビルド番号」を7回タップして**開発者モード**を有効化します。
+3. 開発者向けオプションから **USBデバッグ**（または **ワイヤレスデバッグ**）を有効にしてください。
 
 ---
 
@@ -55,6 +59,13 @@ Galaxy A Dex は、本来 Samsung DeX に非対応な Galaxy Aシリーズ（A20
 
 ---
 
+### ❓ トラブルシューティング
+
+* **起動時にエラー（Line 6 や DLL 関連のエラーなど）が出て起動できない:**
+  [Visual C++ 再頒布可能パッケージ (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe) をPCにインストールしてから再度起動してください。
+
+---
+
 ### ⚠️ 注意事項
 
 - **免責事項:** 本ソフトを利用したことによって生じた一切の損害や不利益について、作者は責任を負いません。自己責任でのご利用をお願いいたします。
@@ -88,8 +99,12 @@ Galaxy A Dex is a GUI application designed to launch and operate a virtual Samsu
 ### 📖 How to Use
 
 #### Prerequisites
-1. Go to **Settings** > **About phone** > **Software information** and tap **Build number** 7 times to enable **Developer options**.
-2. Enable **USB debugging** (or **Wireless debugging**) in Developer options.
+1. **PC Environment (Required):**
+   If you encounter startup errors, the **Microsoft Visual C++ Redistributable (x64)** might be missing. Please download and install it from the link below:
+   * 🔗 [Download Visual C++ Redistributable (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+2. **Phone Setup:**
+   Go to **Settings** > **About phone** > **Software information** and tap **Build number** 7 times to enable **Developer options**.
+3. Enable **USB debugging** (or **Wireless debugging**) in Developer options.
 
 ---
 
@@ -124,6 +139,13 @@ Galaxy A Dex is a GUI application designed to launch and operate a virtual Samsu
    * **F11:** Toggle Fullscreen Mode
    * **Right Alt** or **Right Ctrl:** Release mouse lock (return cursor to Windows/PC)
 4. **How to Disconnect:** Close the `scrcpy` window or click **Stop DeX** in the application.
+
+---
+
+### ❓ Troubleshooting
+
+* **App fails to start or shows errors (e.g., Line 6 or missing DLL errors):**
+  Install the [Visual C++ Redistributable (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe) on your PC and launch the app again.
 
 ---
 
