@@ -97,14 +97,30 @@ class DexController:
         self.scrcpy_path = scrcpy_path
         self.process = None
 
-    def start_dex(self, width=1920, height=1080, dpi=240, bitrate="8M", fps=60, serial=None):
+def connect_device(self, ip_port):
+        cmd = [self.adb_path, "connect", ip_port]
+        result = subprocess.run(
+            cmd, 
+            capture_output=True, 
+            text=True,
+            creationflags=CREATE_NO_WINDOW
+        )
+        success = "connected to" in result.stdout.lower()
+        return success, result.stdout + result.stderr
+
+
+class DexController:
+    def __init__(self, scrcpy_path):
+        self.scrcpy_path = scrcpy_path
+        self.process = None
+
+    def start_dex(self, width=1920, height=1080, dpi=240, bitrate="6M", fps=60, serial=None):
         display_param = f"--new-display={width}x{height}/{dpi}"
         cmd = [
             self.scrcpy_path,
             display_param,
-            "-b", bitrate,
-            "--max-fps", str(fps),
-            "--video-codec=h265",
+            f"--video-bit-rate={bitrate}",
+            f"--max-fps={fps}",
             "--shortcut-mod=rctrl",
             "--stay-awake",
             "--keyboard=uhid"
