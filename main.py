@@ -97,14 +97,13 @@ class DexController:
         self.scrcpy_path = scrcpy_path
         self.process = None
 
-    def start_dex(self, width=1920, height=1080, dpi=240, bitrate="8M", fps=60, serial=None):
+    def start_dex(self, width=1920, height=1080, dpi=240, bitrate="6M", fps=60, serial=None):
         display_param = f"--new-display={width}x{height}/{dpi}"
         cmd = [
             self.scrcpy_path,
             display_param,
-            "-b", bitrate,
-            "--max-fps", str(fps),
-            "--video-codec=h265",
+            f"--video-bit-rate={bitrate}",
+            f"--max-fps={fps}",
             "--shortcut-mod=rctrl",
             "--stay-awake",
             "--keyboard=uhid"
@@ -121,6 +120,13 @@ class DexController:
         if self.process and self.process.poll() is None:
             self.process.terminate()
             self.process = None
+
+
+    def stop_dex(self):
+        if self.process and self.process.poll() is None:
+            self.process.terminate()
+            self.process = None
+
 
 class DexApp(QMainWindow):
     def __init__(self):
