@@ -1,87 +1,147 @@
-# Galaxy A Dex 日本語
-Galaxy A Dexはその名の通りGalaxyのAシリーズ(A20やA30シリーズ)で、SamsungDexを起動するためのソフトです。  
-リリース版はWindows版のみですがコードを改変すればmacOSやLinuxでも使用することが可能であると思われます。  
+# Galaxy A Dex
 
-## 使い方
-事前準備として開発者モードからUSBデバッグまたはワイヤレスデバッグを有効化してください。  
-まずUSBで接続する方法から解説します。  
-ソフトを起動したら端末側にデバッグ許可の画面が出てくるはずなので許可してください。これで完了です。  
-仮に出てこなかったらType-Cの差し直し、手動更新などをお試しください。  
-次にワイヤレスデバッグでの接続方法を解説します。  
-ソフトを起動し、ワイヤレスデバッグのメニューを開き、専用コードでのペアリングを選択、表示されたIPアドレスとポート、ペアリングコードを入力し、ペアリングボタンをクリックします。  
-成功したら接続完了という表記がソフト側に出てくるのでペアリングは完了です。  
-ワイヤレスデバッグの場合次回接続時はワイヤレスデバッグメニューのIPアドレス、ポートをペアリング入力欄の一つ下の入力欄に入力し接続をしてください。  
-これで接続は完了です。  
-サンプルとしてソフトのメニューを置いておきます。  
-<img width="621" height="692" alt="{DCBC1145-92DE-4F3B-91D0-A170FBEF7C2A}" src="https://github.com/user-attachments/assets/cb911be5-ec46-4d9a-80dc-f3eb56db6efd" />
-
-次に実際にSamsungDexを起動するための方法を解説します。  
-解像度やDPIを変更できますが、変更しなくても利用可能です。  
-解像度はモニターの解像度に合わせ、DPIは実際に利用してみてでかいと思ったらDPIの値を低くし、大きいと思ったら値を大きくしてください。  
-変更を済ませたらDex起動をクリックすれば、その後にScrcpyが起動し操作が可能になります。  
-F11でフルスクリーン切り替えができますので是非ご活用ください。  
-scrcpyを閉じるかソフト側でDex終了ボタンを押すことで切断することができます。  
-### 注意事項
-このソフトを利用したことで起こった不利益に関しては作者は責任を負いません。  
-ワイヤレスデバッグでの接続は動作を保証しませんのでご注意ください。  
-このソフトは通常のSやZシリーズでも利用することができますが、動作を保証しません。  
-
-#### 動作を確認したデバイス
-Galaxy A25 5G (SMA-253Z,JP)
-
-##### リンク等について
-[公式Discord](https://discord.gg/gVqgBkvPRt)  
-[作者Twitter](https://x.com/kakyu0630)
-# Galaxy A Dex　English
-
-
-As the name suggests, Galaxy A Dex is a software application designed to enable and launch Samsung DeX on Galaxy A-series devices (such as the A20 or A30 series).  
-While the official release is available only for Windows, it can likely be run on macOS or Linux by modifying the source code.
-
-## How to Use
-
-As a prerequisite, please enable **USB Debugging** or **Wireless Debugging** in your device's **Developer Options**.
-
-### Connecting via USB
-
-1. Launch the application.
-2. Connect your device to your PC using a USB Type-C cable.
-3. A prompt requesting debugging authorization should appear on your device screen. Grant permission to complete the setup.
-4. If the authorization prompt does not appear, try reconnecting the USB Type-C cable or manually refreshing the connection in the app.
-
-### Connecting via Wireless Debugging
-
-1. Launch the application and open the **Wireless Debugging** menu.
-2. Select **Pair with pairing code**.
-3. Enter the displayed IP address, port, and pairing code, then click **Pair**.
-4. Once successful, a completion message will appear in the app.
-5. For subsequent connections, enter the IP address and port into the input fields located just below the pairing section and click connect.
-<img width="522" height="692" alt="image" src="https://github.com/user-attachments/assets/051866ce-7292-47bd-aeac-b5d7cd299da3" />
----
-
-### Launching Samsung DeX
-
-1. Adjust the **Resolution** and **DPI** settings if necessary (default settings work fine as well):
-   - **Resolution:** Match it to your monitor's display resolution.
-   - **DPI:** Decrease the DPI value if elements appear too large, or increase it if they appear too small.
-2. Click **Start DeX** (Dex起動).
-3. **Scrcpy** will launch automatically, allowing you to control your device.
-4. Press **F11** to toggle full-screen mode.
-5. To disconnect, close the Scrcpy window or click **Stop DeX** (Dex終了) in the application.
+[  日本語 (Japanese) ](#-日本語-japanese) | [  English ](#-english)
 
 ---
 
-## Important Notes
+## 🇯🇵 日本語 (Japanese)
+
+Galaxy A Dex は、本来 Samsung DeX に非対応な Galaxy Aシリーズ（A20/A30/A25 等）で、PC上に仮想DeX画面を表示・操作するためのGUIアプリケーションです。
+
+* **多言語自動切替:** OSの言語設定に合わせて自動で「日本語 / English」が切り替わります（UI上のドロップダウンメニューから手動切り替えも可能）。
+* **クロスプラットフォーム対応:** リリリース版は Windows 向け（単一exe）ですが、Pythonソースコードから実行することで macOS や Linux でも利用可能です。
+
+---
+
+### 📖 使い方
+
+#### 事前準備
+1. 端末の「設定」>「端末情報」>「ソフトウェア情報」から「ビルド番号」を7回タップして**開発者モード**を有効化します。
+2. 開発者向けオプションから **USBデバッグ**（または **ワイヤレスデバッグ**）を有効にしてください。
+
+---
+
+#### 1. USBで接続する場合
+
+1. 本アプリを起動し、PCとスマホを USB Type-C ケーブルで接続します。
+2. スマホ画面に「USBデバッグを許可しますか？」というポップアップが表示されたら**許可**をタップします。
+3. アプリ上の「接続デバイス」一覧に端末名が表示されれば準備完了です。
+   * ※表示されない場合はケーブルの抜き差しや「更新」ボタンをお試しください。
+
+---
+
+#### 2. ワイヤレスデバッグで接続する場合
+
+1. スマホの「ワイヤレスデバッグ」項目を開き、「ペアリングコードでデバイスをペアリング」を選択します。
+2. アプリの「ワイヤレス ADB 接続」エリアに、表示された **IP:ポート** と **ペアリングコード** を入力し、**「ペアリング」** ボタンをクリックします。
+3. ペアリング成功後、次回以降の接続は「IP:ポート (接続用 :5555)」側にアドレスを入力し、**「接続」** ボタンを押すだけで完了します。
+
+<div align="center">
+  <img width="520" alt="Galaxy A Dex Main UI" src="https://github.com/user-attachments/assets/cb911be5-ec46-4d9a-80dc-f3eb56db6efd" />
+</div>
+
+---
+
+#### 3. DeX 仮想ディスプレイの起動
+
+1. **解像度・DPIの調整**（任意）
+   * **幅 / 高さ:** お使いのPCモニターの解像度に合わせて変更できます（デフォルト: 1920x1080）。
+   * **DPI:** 画面の要素が大きいと感じたら値を小さく、小さすぎると感じたら大きく調整してください（デフォルト: 240DPI）。
+2. **「DeX 開始」** ボタンをクリックすると scrcpy がバックグラウンドで起動し、PC上に DeX 画面が表示されます。
+3. **便利な操作:**
+   * **F11 キー:** 全画面表示（フルスクリーン）の切り替え
+   * **右 Alt キー** または **右 Ctrl キー:** マウスキャプチャの解除（PC側にカーソルを戻す）
+4. **終了方法:** scrcpy のウィンドウを閉じるか、アプリ上の **「DeX 停止」** ボタンを押すことで安全に切断できます。
+
+---
+
+### ⚠️ 注意事項
+
+- **免責事項:** 本ソフトを利用したことによって生じた一切の損害や不利益について、作者は責任を負いません。自己責任でのご利用をお願いいたします。
+- ワイヤレスデバッグ接続はネットワーク環境に依存するため、動作や安定性を保証するものではありません。
+- 通常の S シリーズや Z シリーズでも利用可能ですが、動作保証対象外となります。
+
+---
+
+### 📱 動作確認済みデバイス
+
+- **Galaxy A25 5G** (`SM-A253Z`, JP版 / 日本国内モデル)
+
+---
+
+### 🔗 リンク・コミュニティ
+
+- [公式 Discord サーバー](https://discord.gg/gVqgBkvPRt)  
+- [作者 X (旧Twitter)](https://x.com/kakyu0630)
+
+---
+
+## 🇺🇸 English
+
+Galaxy A Dex is a GUI application designed to launch and operate a virtual Samsung DeX display on PCs for Galaxy A-series devices (such as A20, A30, A25, etc.) that do not natively support DeX.
+
+* **Automatic Language Switching:** Automatically switches between Japanese and English based on system settings (manual switching via UI dropdown is also available).
+* **Cross-Platform Support:** Official release is for Windows (standalone `.exe`), but running directly from Python source code allows execution on macOS and Linux.
+
+---
+
+### 📖 How to Use
+
+#### Prerequisites
+1. Go to **Settings** > **About phone** > **Software information** and tap **Build number** 7 times to enable **Developer options**.
+2. Enable **USB debugging** (or **Wireless debugging**) in Developer options.
+
+---
+
+#### 1. Connecting via USB
+
+1. Launch the application and connect your phone to the PC using a USB Type-C cable.
+2. Tap **Allow** when the "Allow USB debugging?" prompt appears on your phone screen.
+3. Once your device appears in the "Connected Device" list within the app, setup is complete.
+   * *If it doesn't appear, try reconnecting the cable or clicking the "Refresh" button.*
+
+---
+
+#### 2. Connecting via Wireless Debugging
+
+1. Open **Wireless debugging** on your phone and select **Pair device with pairing code**.
+2. Enter the displayed **IP:Port** and **Pairing Code** into the "Wireless ADB Connection" section of the app, then click **Pair**.
+3. After pairing successfully, for subsequent connections, simply enter the IP:Port in the lower connection input box (`:5555`) and click **Connect**.
+
+<div align="center">
+  <img width="520" alt="Galaxy A Dex Main UI" src="https://github.com/user-attachments/assets/cb911be5-ec46-4d9a-80dc-f3eb56db6efd" />
+</div>
+
+---
+
+#### 3. Launching Samsung DeX
+
+1. **Adjust Resolution & DPI** (Optional):
+   * **Width / Height:** Match your PC monitor's resolution (Default: 1920x1080).
+   * **DPI:** Lower the DPI if UI elements appear too large, or increase it if they appear too small (Default: 240 DPI).
+2. Click **Start DeX**. `scrcpy` will launch in the background and display the DeX interface on your PC.
+3. **Useful Controls:**
+   * **F11:** Toggle Fullscreen Mode
+   * **Right Alt** or **Right Ctrl:** Release mouse lock (return cursor to Windows/PC)
+4. **How to Disconnect:** Close the `scrcpy` window or click **Stop DeX** in the application.
+
+---
+
+### ⚠️ Important Notes
 
 - **Disclaimer:** The developer assumes no responsibility or liability for any issues, loss, or damages resulting from the use of this software.
-- Wireless debugging functionality and stability are not guaranteed.
+- Wireless debugging functionality and stability depend on your network environment and are not guaranteed.
 - While this application may function on flagship Galaxy S and Z series devices, operation on those models is not guaranteed.
 
-## Confirmed Working Devices
+---
+
+### 📱 Confirmed Working Devices
 
 - **Galaxy A25 5G** (`SM-A253Z`, JP version)
 
-## Links & Community
+---
 
-- [Official Discord](https://discord.gg/gVqgBkvPRt)
+### 🔗 Links & Community
+
+- [Official Discord](https://discord.gg/gVqgBkvPRt)  
 - [Developer's Twitter / X](https://x.com/kakyu0630)
