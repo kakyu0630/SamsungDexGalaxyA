@@ -1,5 +1,8 @@
 # Galaxy A Dex
 
+# このソフトは似類のソフトがあることに加え、開発者がPixel7aに乗り換えA25を売却したため、開発終了します。
+# ご利用ありがとうございました。
+
 [  日本語 (Japanese) ](#-日本語-japanese) | [  English ](#-english)
 
 ---
